@@ -35,11 +35,11 @@ let config = {
     },
     width: 2700,
     height: 540,
-    scene: [Load, Level_2]
+    scene: [Load, Bitryside]
 }
 
 var cursors;
-const SCALE = 2.0;
+const SCALE = 1.0;
 var my = {sprite: {}, text: {}, vfx: {}, sfx: {}, tileLayers: {}};
 
 const game = new Phaser.Game(config);

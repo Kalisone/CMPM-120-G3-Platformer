@@ -55,7 +55,7 @@ class Load extends Phaser.Scene {
          **** **** **** **** **** **** */
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNames('platformer_characters', {
+            frames: this.anims.generateFrameNames("characters", {
                 prefix: "tile_",
                 start: 0,
                 end: 1,
@@ -68,7 +68,7 @@ class Load extends Phaser.Scene {
 
         this.anims.create({
             key: 'idle',
-            defaultTextureKey: "platformer_characters",
+            defaultTextureKey: "characters",
             frames: [
                 { frame: "tile_0000.png" }
             ],
@@ -77,7 +77,7 @@ class Load extends Phaser.Scene {
 
         this.anims.create({
             key: 'jump',
-            defaultTextureKey: "platformer_characters",
+            defaultTextureKey: "characters",
             frames: [
                 { frame: "tile_0001.png" }
             ],
@@ -87,7 +87,7 @@ class Load extends Phaser.Scene {
          * CREATE SFX
          **** **** **** **** **** **** */
 
-        this.scene.start("platformerScene");
+        this.scene.start("bitryside");
     }
 
     update() {
