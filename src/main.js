@@ -40,6 +40,6 @@ let config = {
 
 var cursors;
 const SCALE = 2.0;
-var my = {sprite: {}, text: {}, vfx: {}};
+var my = {sprite: {}, text: {}, vfx: {}, sfx: {}, tileLayers: {}};
 
 const game = new Phaser.Game(config);
