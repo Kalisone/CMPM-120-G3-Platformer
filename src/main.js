@@ -23,11 +23,23 @@ let config = {
     render: {
         pixelArt: true  // prevent pixel art from getting blurred when scaled
     },
-    width: 1200,
-    height: 600,
-    scene: [],
-    fps: {
-        forceSetTimeOut: true,
-        target: 30
-    }
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: true,
+            gravity: {
+                x: 0,
+                y: 0
+            }
+        }
+    },
+    width: 2700,
+    height: 540,
+    scene: [Load, Level_2]
 }
+
+var cursors;
+const SCALE = 2.0;
+var my = {sprite: {}, text: {}, vfx: {}};
+
+const game = new Phaser.Game(config);
