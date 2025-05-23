@@ -32,7 +32,7 @@ class Load extends Phaser.Scene {
         });
 
         // Load background tilemap
-        this.load.image("green_background", "pixPlatform_tilemap-backgrounds.png");
+        this.load.image("green_background", "pixPlatform_tilemap-backgrounds_packed.png");
         /* END LOAD TILES */
 
         /* **** **** **** **** **** ****
