@@ -60,7 +60,7 @@ class Bitryside extends Phaser.Scene {
         this.physics.world.enable(this.keys, Phaser.Physics.Arcade.STATIC_BODY);
         this.keyGroup = this.add.group(this.keys);
 
-        for(let key of this.keyGroup){
+        for(let key of this.keys){
             this.numKeys++;
         }
         /* END CREATE TILES */

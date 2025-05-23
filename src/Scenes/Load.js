@@ -12,7 +12,7 @@ class Load extends Phaser.Scene {
          * LOAD TILES
          **** **** **** **** **** **** */
         // Load characters spritesheet
-        this.load.atlas("characters", "pixPlatform_tilemap-characters_packed.png", "pixPlatform_tilemap-characters_packed.json");
+        this.load.atlas("platformer_characters", "pixPlatform_tilemap-characters_packed.png", "pixPlatform_tilemap-characters_packed.json");
 
         // Load tilemap information
         this.load.image("base_tilemap_tiles", "pixPlatform_tilemap_packed.png");
@@ -73,7 +73,7 @@ class Load extends Phaser.Scene {
         /* Anims, unassigned */
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNames("characters", {
+            frames: this.anims.generateFrameNames("platformer_characters", {
                 prefix: "tile_",
                 start: 0,
                 end: 1,
@@ -86,7 +86,7 @@ class Load extends Phaser.Scene {
 
         this.anims.create({
             key: 'idle',
-            defaultTextureKey: "characters",
+            defaultTextureKey: "platformer_characters",
             frames: [
                 { frame: "tile_0000.png" }
             ],
@@ -95,7 +95,7 @@ class Load extends Phaser.Scene {
 
         this.anims.create({
             key: 'jump',
-            defaultTextureKey: "characters",
+            defaultTextureKey: "platformer_characters",
             frames: [
                 { frame: "tile_0001.png" }
             ],
