@@ -185,7 +185,7 @@ class Bitryside extends Phaser.Scene {
                 {key: "kenny-particles", frame: "smoke_08.png"},
                 {key: "kenny-particles", frame: "smoke_09.png"}
             ],
-            duration: 150
+            duration: 300
         });
 
         /* Particles */
@@ -194,7 +194,7 @@ class Bitryside extends Phaser.Scene {
             scale: {start: 0.03, end: 0.2},
             frequency: my.vfx.keyAnim.msPerFrame,
             lifespan: my.vfx.keyAnim.duration,
-            alpha: {start: 0.2, end: 0.1},
+            alpha: {start: 0.4, end: 0.1},
             blendMode: "ADD"
         }).stop();
 
@@ -205,7 +205,7 @@ class Bitryside extends Phaser.Scene {
             maxAliveParticles: 8,
             lifespan: 150,
             gravityY: -400,
-            alpha: {start: 0, end: 0.1}
+            alpha: {start: 0.8, end: 0.2}
         }).stop();
 
         my.vfx.landing = this.add.particles(0, 0, "kenny-particles", {
@@ -213,7 +213,7 @@ class Bitryside extends Phaser.Scene {
             scale: {start: 0.04, end: 0.1},
             frequency: my.vfx.landingAnim.msPerFrame,
             lifespan: my.vfx.landingAnim.duration,
-            gravityY: -400
+            gravityY: -200
         }).stop();
         /* END CREATE VFX */
 
@@ -261,7 +261,7 @@ class Bitryside extends Phaser.Scene {
             my.sprite.player.resetFlip();
             my.sprite.player.anims.play('walk', true);
             // TODO: add particle following code here
-            my.vfx.walking.startFollow(my.sprite.player, my.sprite.player.displayWidth/4, my.sprite.player.displayHeight/2 - 5, false);
+            my.vfx.walking.startFollow(my.sprite.player, my.sprite.player.displayWidth/4, my.sprite.player.displayHeight/2, false);
             my.vfx.walking.setParticleSpeed(this.PARTICLE_VELOCITY, 0);
 
             // Only play smoke effect if touching the ground
@@ -277,7 +277,7 @@ class Bitryside extends Phaser.Scene {
             my.sprite.player.setFlip(true, false);
             my.sprite.player.anims.play('walk', true);
             // TODO: add particle following code here
-            my.vfx.walking.startFollow(my.sprite.player, -my.sprite.player.displayWidth/4, my.sprite.player.displayHeight/2 - 5, false);
+            my.vfx.walking.startFollow(my.sprite.player, -my.sprite.player.displayWidth/4, my.sprite.player.displayHeight/2, false);
             my.vfx.walking.setParticleSpeed(this.PARTICLE_VELOCITY, 0);
 
             // Only play smoke effect if touching the ground
@@ -312,6 +312,9 @@ class Bitryside extends Phaser.Scene {
         // [^] JUMPING
         if(my.sprite.player.body.blocked.down && Phaser.Input.Keyboard.JustDown(cursors.up)) {
             my.sprite.player.body.setVelocityY(this.JUMP_VELOCITY);
+
+            my.vfx.landing.emitParticleAt(my.sprite.player.x, my.sprite.player.y + (my.sprite.player.displayHeight / 2));
+
             for(let sound of my.sfx.jump){
                 sound.play();
             }
@@ -319,7 +322,7 @@ class Bitryside extends Phaser.Scene {
 
         // [^] LANDING
         if(this.inAir === false && this.wasInAir === true){
-            my.vfx.landing.emitParticleAt(my.sprite.player.x, my.sprite.player.y + (my.sprite.player.displayHeight / 2));
+            my.vfx.landing.emitParticleAt(my.sprite.player.x, my.sprite.player.y + (my.sprite.player.displayHeight));
 
             for(let sound of my.sfx.landing){
                 sound.play();
@@ -347,7 +350,7 @@ class Bitryside extends Phaser.Scene {
         for(let sound of my.sfx.key){
             sound.play();
         }
-
+        
         return;
     }
 
@@ -364,7 +367,7 @@ class Bitryside extends Phaser.Scene {
         sprite.lives--;
         sprite.x = this.spawnPt.x;
         sprite.y = this.spawnPt.y;
-
-        this.cameras.main.shake(120)
+        
+        this.cameras.main.shake(270, 0.02)
     }
 }
