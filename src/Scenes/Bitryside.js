@@ -132,6 +132,74 @@ class Bitryside extends Phaser.Scene {
     }
 
     update(){
-        
+        /* **** **** **** **** **** ****
+         * PLAYER MOVEMENT
+         **** **** **** **** **** **** */
+
+        // [<-] LEFT
+         if(cursors.left.isDown && !cursors.right.isDown) {
+            my.sprite.player.setAccelerationX(-this.ACCELERATION);
+            my.sprite.player.resetFlip();
+            my.sprite.player.anims.play('walk', true);
+            // TODO: add particle following code here
+            my.vfx.walking.startFollow(my.sprite.player, my.sprite.player.displayWidth/4, my.sprite.player.displayHeight/2 - 5, false);
+            my.vfx.walking.setParticleSpeed(this.PARTICLE_VELOCITY, 0);
+
+            // Only play smoke effect if touching the ground
+            if (my.sprite.player.body.blocked.down) {
+                this.fxPlayerWalk();
+            }
+
+        }
+
+        // [->] RIGHT
+        if(cursors.right.isDown && !cursors.left.isDown) {
+            my.sprite.player.setAccelerationX(this.ACCELERATION);
+            my.sprite.player.setFlip(true, false);
+            my.sprite.player.anims.play('walk', true);
+            // TODO: add particle following code here
+            my.vfx.walking.startFollow(my.sprite.player, -my.sprite.player.displayWidth/4, my.sprite.player.displayHeight/2 - 5, false);
+            my.vfx.walking.setParticleSpeed(this.PARTICLE_VELOCITY, 0);
+
+            // Only play smoke effect if touching the ground
+            if (my.sprite.player.body.blocked.down) {
+                this.fxPlayerWalk();
+            }
+
+        }
+
+        // UNMOVING ON HORIZONTAL AXIS
+        if((cursors.left.isDown && cursors.right.isDown) || !(cursors.left.isDown || cursors.right.isDown)){
+            // Set acceleration to 0 and have DRAG take over
+            my.sprite.player.setAccelerationX(0);
+            my.sprite.player.setDragX(this.DRAG);
+            my.sprite.player.anims.play('idle');
+            // TODO: have the vfx stop playing
+            my.vfx.walking.stop();
+        }
+
+        // [^] JUMPING
+        if(!my.sprite.player.body.blocked.down) {
+            my.sprite.player.anims.play('jump');
+            my.vfx.walking.stop();
+
+            this.wasInAir = this.inAir;
+            this.inAir = true;
+        }else{
+            this.wasInAir = this.inAir;
+            this.inAir = false;
+        }
+        if(my.sprite.player.body.blocked.down && Phaser.Input.Keyboard.JustDown(cursors.up)) {
+            my.sprite.player.body.setVelocityY(this.JUMP_VELOCITY);
+            this.jump1.play();
+            this.jump2.play();
+        }
+
+        if(this.inAir === false && this.wasInAir === true){
+            my.vfx.landing.emitParticleAt(my.sprite.player.x, my.sprite.player.y + (my.sprite.player.displayHeight / 2));
+
+            this.hardStep.play();
+            this.softStep.play();
+        }
     }
 }
