@@ -12,6 +12,7 @@ class Bitryside extends Phaser.Scene {
         this.MAX_SPEED = 240;
         this.PARTICLE_VELOCITY = 50;
         this.SCALE = SCALE;
+        this.physics.world.TILE_BIAS = 36;
 
         this.wasInAir = this.inAir = false;
         this.numKeys = 0;
@@ -88,8 +89,9 @@ class Bitryside extends Phaser.Scene {
          **** **** **** **** **** **** */
         this.spawnPt = this.map.findObject("Objects-5", obj => obj.name === "spawn");
         my.sprite.player = this.physics.add.sprite(this.spawnPt.x, this.spawnPt.y, "platformer_characters", "tile_0002.png");
-        my.sprite.player.setCollideWorldBounds(true);
+        //my.sprite.player.setCollideWorldBounds(true, 1);
         my.sprite.player.body.maxVelocity.x = this.MAX_SPEED;
+        my.sprite.player.setScale(0.7);
 
         // Collision handling
         this.physics.add.collider(my.sprite.player, this.layerGround_1);
@@ -103,12 +105,23 @@ class Bitryside extends Phaser.Scene {
         /* END PLAYER SETUP */
 
         /* **** **** **** **** **** ****
+         * HAZARDS
+         **** **** **** **** **** **** */
+        this.layerGround_1.setTileIndexCallback([13, 29, 45], this.hazard, this);
+        this.physics.add.overlap(my.sprite.player, this.layerGround_1);
+        /*
+        for(let layer of this.tileLayers){
+            layer.setTileIndexCallback([14, 30, 46], this.hazard, this);
+            this.physics.add.overlap(my.sprite.player, layer);
+        }
+
+        /* **** **** **** **** **** ****
          * CAMERAS SETUP
          **** **** **** **** **** **** */
         this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
         this.cameras.main.startFollow(my.sprite.player, true, 0.1, 0.1);
         this.cameras.main.setDeadzone(20, 20);
-        //this.cameras.main.setZoom(SCALE);
+        this.cameras.main.setZoom(SCALE);
         this.cameras.main.setBackgroundColor("#7ff0a5");
 
         for(let k in my.text){
@@ -337,5 +350,20 @@ class Bitryside extends Phaser.Scene {
         }
 
         return;
+    }
+
+    hazard(sprite, tile){
+        console.log("callback")
+        if(sprite.lives > 0){
+            respawn(sprite);
+        }
+
+        return;
+    }
+
+    respawn(sprite){
+        sprite.lives--;
+        sprite.x = this.spawnPt.x;
+        sprite.y = this.spawnPt.y;
     }
 }

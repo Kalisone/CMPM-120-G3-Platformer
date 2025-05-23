@@ -32,13 +32,13 @@ let config = {
             }
         }
     },
-    width: 2700,
-    height: 540,
+    width: 1080,
+    height: 480,
     scene: [Load, Bitryside]
 }
 
 var cursors;
-const SCALE = 1.0;
+const SCALE = 2.0;
 var my = {sprite: {}, text: {}, vfx: {}, sfx: {}};
 
 const game = new Phaser.Game(config);
