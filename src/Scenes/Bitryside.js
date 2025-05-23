@@ -17,6 +17,7 @@ class Bitryside extends Phaser.Scene {
         this.wasInAir = this.inAir = false;
         this.numKeys = 0;
         this.stepCounter = 0;
+        my.sprite.lives = 3;
     }
 
     preload(){
@@ -365,5 +366,7 @@ class Bitryside extends Phaser.Scene {
         sprite.lives--;
         sprite.x = this.spawnPt.x;
         sprite.y = this.spawnPt.y;
+
+        this.cameras.main.shake(120)
     }
 }
