@@ -82,7 +82,7 @@ class Bitryside extends Phaser.Scene {
          * PLAYER SETUP
          **** **** **** **** **** **** */
         this.spawnPt = this.map.findObject("Objects-5", obj => obj.name === "spawn");
-        my.sprite.player = this.physics.add.sprite(this.spawnPt.x, this.spawnPt.y, "platformer_characters", "tile_0000.png");
+        my.sprite.player = this.physics.add.sprite(this.spawnPt.x, this.spawnPt.y, "platformer_characters", "tile_0002png");
         my.sprite.player.setCollideWorldBounds(true);
         my.sprite.player.body.maxVelocity.x = this.MAX_SPEED;
 
