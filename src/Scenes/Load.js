@@ -38,14 +38,14 @@ class Load extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * LOAD VFX
          **** **** **** **** **** **** */
-        this.load.setPath("./particles/");
+        this.load.setPath("../assets/particles/");
         this.load.multiatlas("kenny-particles", "kenny-particles.json");
         /* END LOAD VFX */
 
         /* **** **** **** **** **** ****
          * LOAD SFX
          **** **** **** **** **** **** */
-        this.load.setPath("./audio/");
+        this.load.setPath("../assets/audio/");
         // Jump sound
         this.load.audio("jump", "phaseJump3.ogg");
         this.load.audio("up", "phaserUp4.ogg");
@@ -69,7 +69,7 @@ class Load extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * CREATE VFX
          **** **** **** **** **** **** */
-        this.load.setPath("./particles/");
+        this.load.setPath("../assets/particles/");
         /* Anims, unassigned */
         this.anims.create({
             key: 'walk',
@@ -175,6 +175,7 @@ class Load extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * CREATE SFX
          **** **** **** **** **** **** */
+        this.load.setPath("../assets/audio/");
         my.sfx.jump = [
             this.sound.add("jump", {volume: 0.6}),
             this.sound.add("up", {volume: 0.6})
