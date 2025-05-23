@@ -75,8 +75,8 @@ class Load extends Phaser.Scene {
             key: 'walk',
             frames: this.anims.generateFrameNames("platformer_characters", {
                 prefix: "tile_",
-                start: 0,
-                end: 1,
+                start: 2,
+                end: 3,
                 suffix: ".png",
                 zeroPad: 4
             }),

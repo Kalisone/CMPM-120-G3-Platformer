@@ -8,7 +8,7 @@ class Bitryside extends Phaser.Scene {
         this.ACCELERATION = 800;
         this.DRAG = 2400;
         this.physics.world.gravity.y = 1500;
-        this.JUMP_VELOCITY = -480;
+        this.JUMP_VELOCITY = -500;
         this.MAX_SPEED = 240;
         this.PARTICLE_VELOCITY = 50;
         this.SCALE = SCALE;
