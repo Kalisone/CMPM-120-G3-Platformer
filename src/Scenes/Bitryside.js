@@ -18,7 +18,7 @@ class Bitryside extends Phaser.Scene {
     }
 
     preload(){
-        
+        this.load.scenePlugin('AnimatedTiles', './lib/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
     }
 
     create(){
@@ -123,6 +123,9 @@ class Bitryside extends Phaser.Scene {
             this.cameraUI.ignore(layer);
         }
         /* END CAMERAS SETUP */
+
+        // Animated Tiles Plugin
+        this.animatedTiles.init(this.map);
     }
 
     update(){
