@@ -41,6 +41,15 @@ class Bitryside extends Phaser.Scene {
         this.layerTreeCloud_3 = this.map.createLayer("Trees-Clouds-3", [this.tilesetBase, this.tilesetInd], 0, 0);
         this.layerEnvrBack_4 = this.map.createLayer("Environs-Background-4", [this.tilesetBase, this.tilesetInd], 0, 0);
 
+        this.tileLayers = [];
+        this.tileLayers.push(this.layerGround_1, this.layerEnvrFore_2, this.layerTreeCloud_3, this.layerEnvrBack_4);
+
+        for(let layer of this.tileLayers){
+            layer.setCollisionByProperty({
+                collides: true
+            });
+        }
+
         // Object Layer
 
         /* END CREATE TILES */
