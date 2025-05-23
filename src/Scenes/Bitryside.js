@@ -90,7 +90,7 @@ class Bitryside extends Phaser.Scene {
         // Collision handling
         this.physics.add.collider(my.sprite.player, this.layerGround_1);
 
-        this.physics.add.overlap(my.sprite.player, this.coinGroup, (obj1, obj2) => {
+        this.physics.add.overlap(my.sprite.player, this.keyGroup, (obj1, obj2) => {
             this.collectObj(obj1, obj2);
         })
 
@@ -323,7 +323,7 @@ class Bitryside extends Phaser.Scene {
     }
 
     collectObj(obj1, obj2){
-        my.vfx.particleCoin.emitParticleAt(obj2.x, obj2.y);
+        my.vfx.particleKey.emitParticleAt(obj2.x, obj2.y);
         obj2.destroy();
 
         my.text.score.setText("Keys Collected: " + ++my.score);
