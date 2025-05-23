@@ -51,11 +51,13 @@ class Bitryside extends Phaser.Scene {
             this.layerEnvrBack_4
         ];
 
-        for(let layer of this.tileLayers){
-            layer.setCollisionByProperty({
-                collides: true
-            });
-        }
+        this.layerGround_1.setCollisionByProperty({
+            collides: true
+        });
+
+        this.layerEnvrBack_4.setCollisionByProperty({
+            collides: true
+        });
 
         // Object Layer
         this.keys = this.map.createFromObjects("Objects-5", {
@@ -92,7 +94,6 @@ class Bitryside extends Phaser.Scene {
         my.sprite.player = this.physics.add.sprite(this.spawnPt.x, this.spawnPt.y, "platformer_characters", "tile_0002.png");
         //my.sprite.player.setCollideWorldBounds(true, 1);
         my.sprite.player.body.maxVelocity.x = this.MAX_SPEED;
-        my.sprite.player.setScale(0.7);
 
         // Collision handling
         this.physics.add.collider(my.sprite.player, this.layerGround_1);
@@ -108,11 +109,8 @@ class Bitryside extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * HAZARDS
          **** **** **** **** **** **** */
-        this.layerGround_1.setTileIndexCallback([13, 29, 45], this.hazard, this);
-        this.physics.add.overlap(my.sprite.player, this.layerGround_1);
-        /*
         for(let layer of this.tileLayers){
-            layer.setTileIndexCallback([14, 30, 46], this.hazard, this);
+            layer.setTileIndexCallback([13, 29, 45], this.hazard, this, layer);
             this.physics.add.overlap(my.sprite.player, layer);
         }
 
