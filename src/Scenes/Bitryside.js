@@ -14,6 +14,10 @@ class Bitryside extends Phaser.Scene {
         this.SCALE = SCALE;
         this.physics.world.TILE_BIAS = 36;
 
+        this.MAP_WIDTH = 2700;
+        this.MAP_HEIGHT = 540;
+        this.physics.world.setBounds(0, 0, this.MAP_WIDTH, this.MAP_HEIGHT);
+
         this.wasInAir = this.inAir = false;
         this.numKeys = 0;
         this.stepCounter = 0;
@@ -77,7 +81,15 @@ class Bitryside extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * CREATE TEXT
          **** **** **** **** **** **** */
-        my.text.keys = this.add.text(20, 20, "Keys Remaining: 0", {
+        my.text.lives = this.add.text(20, 920, "Lives Remaining: " + my.sprite.lives, {
+            fontFamily: "'Jersey 10'",
+            style: "'regular'",
+            fontSize: '24px',
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 2
+        })
+        my.text.keys = this.add.text(20, 20, "Keys Remaining: " + this.numKeys, {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '24px',
@@ -92,7 +104,7 @@ class Bitryside extends Phaser.Scene {
          **** **** **** **** **** **** */
         this.spawnPt = this.map.findObject("Objects-5", obj => obj.name === "spawn");
         my.sprite.player = this.physics.add.sprite(this.spawnPt.x, this.spawnPt.y, "platformer_characters", "tile_0002.png");
-        //my.sprite.player.setCollideWorldBounds(true, 1);
+        my.sprite.player.setCollideWorldBounds(true, 1);
         my.sprite.player.body.maxVelocity.x = this.MAX_SPEED;
 
         // Collision handling
@@ -247,9 +259,6 @@ class Bitryside extends Phaser.Scene {
         }
         /* END CAMERAS SETUP */
 
-        // UPDATE TEXT
-        my.text.keys.setText("Keys Remaining: " + this.numKeys);
-        
         // ANIMATED TILES PLUGIN
         this.animatedTiles.init(this.map);
         
