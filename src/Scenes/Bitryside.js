@@ -345,6 +345,16 @@ class Bitryside extends Phaser.Scene {
                 sound.play();
             }
         }
+
+        // LEVEL END CONDITION
+        if(this.numKeys <= 0){
+            console.log("next level opened");
+        }
+
+        // DEATH CONDITION
+        if(this.lives <= 0){
+            console.log("dead");
+        }
     }
 
     fxPlayerWalk(){
