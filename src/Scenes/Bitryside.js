@@ -77,7 +77,7 @@ class Bitryside extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * CREATE TEXT
          **** **** **** **** **** **** */
-        my.text.score = this.add.text(20, 20, "Keys Collected: 0", {
+        my.text.keys = this.add.text(20, 20, "Keys Remaining: 0", {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '24px',
@@ -247,6 +247,9 @@ class Bitryside extends Phaser.Scene {
         }
         /* END CAMERAS SETUP */
 
+        // UPDATE TEXT
+        my.text.keys.setText("Keys Remaining: " + this.numKeys);
+        
         // ANIMATED TILES PLUGIN
         this.animatedTiles.init(this.map);
         
@@ -350,7 +353,7 @@ class Bitryside extends Phaser.Scene {
         my.vfx.particleKey.emitParticleAt(obj2.x, obj2.y);
         obj2.destroy();
 
-        my.text.score.setText("Keys Collected: " + ++my.score);
+        my.text.keys.setText("Keys Remaining: " + --this.numKeys);
 
         for(let sound of my.sfx.key){
             sound.play();
