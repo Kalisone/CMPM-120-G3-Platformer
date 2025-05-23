@@ -26,7 +26,7 @@ class Bitryside extends Phaser.Scene {
 
     create(){
         // BACKGROUND
-        this.add.image(0, 0, "green_background");
+        this.backgroundImg = this.add.image(0, 0, "green_background");
         this.background = this.add.tileSprite(0, 600, 1440, 396, "green_background").setScale(6).setScrollFactor(0.4);
 
         /* **** **** **** **** **** ****
@@ -228,7 +228,11 @@ class Bitryside extends Phaser.Scene {
         }
 
         this.cameraUI = this.cameras.add();
-        this.cameraUI.ignore([this.background, this.keys]);
+        this.cameraUI.ignore([
+            this.background,
+            this.backgroundImg,
+            this.keys
+        ]);
         
         for(let k in my.sprite){
             this.cameraUI.ignore(my.sprite[k]);
