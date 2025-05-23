@@ -24,7 +24,7 @@ class Bitryside extends Phaser.Scene {
     create(){
         // BACKGROUND
         this.add.image(0, 0, "green_background");
-        this.background = this.add.tilesprite(0, 200, 1440, 396, "green_background").setScale(8).setScrollFactor(0.4);
+        this.background = this.add.tileSprite(0, 200, 1440, 396, "green_background").setScale(8).setScrollFactor(0.4);
 
         /* **** **** **** **** **** ****
          * CREATE TILES
