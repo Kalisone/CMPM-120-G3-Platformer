@@ -318,5 +318,20 @@ class Bitryside extends Phaser.Scene {
             my.sfx.steps[Math.round(Math.random() * (my.sfx.steps.length-1))].play();
             this.stepCounter = 0;
         }
+
+        return;
+    }
+
+    collectObj(obj1, obj2){
+        my.vfx.particleCoin.emitParticleAt(obj2.x, obj2.y);
+        obj2.destroy();
+
+        my.text.score.setText("Keys Collected: " + ++my.score);
+
+        for(let sound of my.sfx.key){
+            sound.play();
+        }
+
+        return;
     }
 }
