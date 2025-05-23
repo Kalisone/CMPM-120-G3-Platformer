@@ -81,10 +81,10 @@ class Bitryside extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * CREATE TEXT
          **** **** **** **** **** **** */
-        my.text.lives = this.add.text(20, 920, "Lives Remaining: " + my.sprite.lives, {
+        my.text.lives = this.add.text(game.config.width - 270, 20, "Lives Remaining: " + my.sprite.lives, {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
-            fontSize: '24px',
+            fontSize: '36px',
             color: "#ffffff",
             stroke: "#000000",
             strokeThickness: 2
@@ -92,7 +92,7 @@ class Bitryside extends Phaser.Scene {
         my.text.keys = this.add.text(20, 20, "Keys Remaining: " + this.numKeys, {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
-            fontSize: '24px',
+            fontSize: '36px',
             color: "#ffffff",
             stroke: "#000000",
             strokeThickness: 2

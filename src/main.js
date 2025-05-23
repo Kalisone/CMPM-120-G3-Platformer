@@ -32,8 +32,8 @@ let config = {
             }
         }
     },
-    width: 1080,
-    height: 480,
+    width: 1440,
+    height: 720,
     scene: [Load, Bitryside]
 }
 
