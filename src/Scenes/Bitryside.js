@@ -68,7 +68,7 @@ class Bitryside extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * CREATE TEXT
          **** **** **** **** **** **** */
-        my.keysTxt = this.add.text(20, 20, "Keys Collected: 0", {
+        my.text.score = this.add.text(20, 20, "Keys Collected: 0", {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '24px',
@@ -97,7 +97,32 @@ class Bitryside extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
         /* END PLAYER SETUP */
 
-        
+        /* **** **** **** **** **** ****
+         * CAMERAS SETUP
+         **** **** **** **** **** **** */
+        this.cameras.main.setBound(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        this.cameras.main.startFollow(my.sprite.player, true, 0.1, 0.1);
+        this.cameras.main.setDeadzone(20, 20);
+        //this.cameras.main.setZoom(SCALE);
+        this.cameras.setBackgroundColor("#7ff0a5");
+
+        for(let k in my.text){
+            this.cameras.main.ignore(my.text[k]);
+        }
+
+        this.cameraUI = this.cameras.add();
+        for(let k in my.sprite){
+            this.cameraUI.ignore(my.sprite[k]);
+        }
+
+        for(let k in my.vfx){
+            this.cameraUI.ignore(my.vfx[k]);
+        }
+
+        for(let layer of this.tileLayers){
+            this.cameraUI.ignore(layer);
+        }
+        /* END CAMERAS SETUP */
     }
 
     update(){

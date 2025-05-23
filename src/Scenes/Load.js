@@ -161,6 +161,14 @@ class Load extends Phaser.Scene {
             gravityY: -400,
             alpha: {start: 0, end: 0.1}
         }).stop();
+
+        my.vfx.landing = this.add.particles(0, 0, "kenny-particles", {
+            anim: "landingAnim",
+            scale: {start: 0.04, end: 0.1},
+            frequency: my.vfx.landingAnim.msPerFrame,
+            lifespan: my.vfx.landingAnim.duration,
+            gravityY: -400
+        }).stop();
         /* END CREATE VFX */
 
         /* **** **** **** **** **** ****
