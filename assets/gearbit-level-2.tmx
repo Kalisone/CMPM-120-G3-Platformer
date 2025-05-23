@@ -531,12 +531,6 @@
     <property name="collides" type="bool" value="true"/>
    </properties>
   </tile>
-  <tile id="28">
-   <animation>
-    <frame tileid="28" duration="0"/>
-    <frame tileid="44" duration="720"/>
-   </animation>
-  </tile>
   <tile id="29">
    <properties>
     <property name="hazard" type="bool" value="true"/>
@@ -588,12 +582,6 @@
    <properties>
     <property name="collides" type="bool" value="true"/>
    </properties>
-  </tile>
-  <tile id="44">
-   <animation>
-    <frame tileid="44" duration="720"/>
-    <frame tileid="28" duration="0"/>
-   </animation>
   </tile>
   <tile id="45">
    <properties>

@@ -1305,18 +1305,6 @@
                 {
                  "animation":[
                         {
-                         "duration":0,
-                         "tileid":28
-                        }, 
-                        {
-                         "duration":720,
-                         "tileid":44
-                        }],
-                 "id":28
-                }, 
-                {
-                 "animation":[
-                        {
                          "duration":720,
                          "tileid":13
                         }, 
@@ -1412,18 +1400,6 @@
                          "type":"bool",
                          "value":true
                         }]
-                }, 
-                {
-                 "animation":[
-                        {
-                         "duration":720,
-                         "tileid":44
-                        }, 
-                        {
-                         "duration":0,
-                         "tileid":28
-                        }],
-                 "id":44
                 }, 
                 {
                  "id":45,
