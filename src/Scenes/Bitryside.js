@@ -14,7 +14,7 @@ class Bitryside extends Phaser.Scene {
         this.SCALE = SCALE;
 
         this.wasInAir = this.inAir = false;
-        this.keys = 0;
+        this.numKeys = 0;
     }
 
     preload(){
@@ -51,7 +51,18 @@ class Bitryside extends Phaser.Scene {
         }
 
         // Object Layer
+        this.keys = this.map.createFromObjects("Objects-5", {
+            name: "key",
+            key: "base_tilemap_sheet",
+            frame: 27
+        });
 
+        this.physics.world.enable(this.keys, Phaser.Physics.Arcade.STATIC_BODY);
+        this.keyGroup = this.add.group(this.keys);
+
+        for(let key of this.keyGroup){
+            this.numKeys++;
+        }
         /* END CREATE TILES */
         
         /* **** **** **** **** **** ****
