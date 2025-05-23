@@ -17,7 +17,7 @@ class Load extends Phaser.Scene {
         // Load tilemap information
         this.load.image("base_tilemap_tiles", "pixPlatform_tilemap_packed.png");
         this.load.image("ind_tilemap_tiles", "pixPlatform-industrial_tilemap_packed.png");
-        
+
         this.load.tilemapTiledJSON("level-bitryside", "gearbit-level-2.tmj");
 
         // Load the tilemap as a spritesheet
@@ -32,7 +32,7 @@ class Load extends Phaser.Scene {
         });
 
         // Load background tilemap
-        this.load.image("tilemap_background", "pixPlatform_tilemap-backgrounds.png");
+        this.load.image("green_background", "pixPlatform_tilemap-backgrounds.png");
         /* END LOAD TILES */
 
         /* **** **** **** **** **** ****
