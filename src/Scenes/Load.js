@@ -9,7 +9,7 @@ class Load extends Phaser.Scene {
         this.load.setPath("./assets/");
 
         /* **** **** **** **** **** ****
-         * LOAD FROM TILED
+         * LOAD TILES
          **** **** **** **** **** **** */
         // Load characters spritesheet
         this.load.atlas("characters", "pixPlatform_tilemap-characters_packed.png", "pixPlatform_tilemap-characters_packed.json");
@@ -17,7 +17,8 @@ class Load extends Phaser.Scene {
         // Load tilemap information
         this.load.image("base_tilemap_tiles", "pixPlatform_tilemap_packed.png");
         this.load.image("ind_tilemap_tiles", "pixPlatform-industrial_tilemap_packed.png");
-        this.load.tilemapTiledJSON("level-2", "gearbit-level-2.tmj");
+        
+        this.load.tilemapTiledJSON("level-bitryside", "gearbit-level-2.tmj");
 
         // Load the tilemap as a spritesheet
         this.load.spritesheet("base_tilemap_sheet", "pixPlatform_tilemap_packed.png", {
@@ -32,19 +33,19 @@ class Load extends Phaser.Scene {
 
         // Load background tilemap
         this.load.image("tilemap_background", "pixPlatform_tilemap-backgrounds.png");
-        
-        /* END LOAD FROM TILED */
+        /* END LOAD TILES */
 
         /* **** **** **** **** **** ****
          * LOAD VFX
          **** **** **** **** **** **** */
+        this.load.setPath("./particles/")
         this.load.multiatlas("kenny-particles", "kenny-particles.json");
         /* END LOAD VFX */
 
         /* **** **** **** **** **** ****
          * LOAD SFX
          **** **** **** **** **** **** */
-        this.load.setPath("./audio/")
+        this.load.setPath("../assets/audio/")
         // Jump sound
         this.load.audio("jump", "phaseJump3.ogg");
         this.load.audio("up", "phaserUp4.ogg");
@@ -54,10 +55,14 @@ class Load extends Phaser.Scene {
         this.load.audio("keyTone", "zapThreeToneUp.ogg");
 
         // Footstep sound
+        this.load.audio("stepHeavy_0", "impactSoft_heavy_000.ogg");
+        this.load.audio("stepMedium_0", "impactSoft_medium_000.ogg");
 
         // Hard footstep sound
+        this.load.audio("stepHard_0", "footstep_concrete_001.ogg");
+        this.load.audio("stepSoft_0", "footstep_carpet_003.ogg");
 
-        /* ENDO LOAD SFX */
+        /* END LOAD SFX */
     }
 
     create() {

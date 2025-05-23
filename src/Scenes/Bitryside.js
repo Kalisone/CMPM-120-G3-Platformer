@@ -22,8 +22,25 @@ class Bitryside extends Phaser.Scene {
     }
 
     create(){
-        this.map = this.add.tilemap("level-2", 18, 18, 150, 30);
+        /* **** **** **** **** **** ****
+         * CREATE TILES
+         **** **** **** **** **** **** */
+        this.map = this.add.tilemap("level-bitryside", 18, 18, 150, 30);
         this.tileset = this.map.addTilesetImage("pixPlatform_tiles", "base_tilemap_tiles");
+        /* END CREATE TILES */
+        
+        /* **** **** **** **** **** ****
+         * CREATE TEXT
+         **** **** **** **** **** **** */
+        my.keysTxt = this.add.text(20, 20, "Keys Collected: 0", {
+            fontFamily: "'Jersey 10'",
+            style: "'regular'",
+            fontSize: '24px',
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 2
+        }).setScrollFactor(0);
+        /* END CREATE TEXT */
     }
 
     update(){

@@ -6,9 +6,8 @@
 // Gearbit
 //
 // Art assets from Kenny Assets
-// "X" set:
 //
-// Audio assets
+// Audio assets from Kenny Assets
 //
 // Music
 // "X" by X: 
@@ -40,6 +39,6 @@ let config = {
 
 var cursors;
 const SCALE = 1.0;
-var my = {sprite: {}, text: {}, vfx: {}, sfx: {}, tileLayers: {}};
+var my = {sprite: {}, text: {}, vfx: {}, sfx: {}};
 
 const game = new Phaser.Game(config);
