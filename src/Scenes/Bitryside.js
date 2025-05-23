@@ -100,16 +100,16 @@ class Bitryside extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * CAMERAS SETUP
          **** **** **** **** **** **** */
-        this.cameras.main.setBound(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
         this.cameras.main.startFollow(my.sprite.player, true, 0.1, 0.1);
         this.cameras.main.setDeadzone(20, 20);
         //this.cameras.main.setZoom(SCALE);
-        this.cameras.setBackgroundColor("#7ff0a5");
+        this.cameras.main.setBackgroundColor("#7ff0a5");
 
         for(let k in my.text){
             this.cameras.main.ignore(my.text[k]);
         }
-
+/*
         this.cameraUI = this.cameras.add();
         for(let k in my.sprite){
             this.cameraUI.ignore(my.sprite[k]);
@@ -124,8 +124,11 @@ class Bitryside extends Phaser.Scene {
         }
         /* END CAMERAS SETUP */
 
-        // Animated Tiles Plugin
+        // ANIMATED TILES PLUGIN
         this.animatedTiles.init(this.map);
+        
+        // DEBUG
+        this.physics.world.drawDebug = false;
     }
 
     update(){
