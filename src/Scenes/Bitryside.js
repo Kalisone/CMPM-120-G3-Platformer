@@ -84,7 +84,7 @@ class Bitryside extends Phaser.Scene {
             color: "#ffffff",
             stroke: "#000000",
             strokeThickness: 2
-        }).setScrollFactor(0);
+        });
         /* END CREATE TEXT */
 
         /* **** **** **** **** **** ****
@@ -113,34 +113,6 @@ class Bitryside extends Phaser.Scene {
             layer.setTileIndexCallback([13, 29, 45], this.hazard, this, layer);
             this.physics.add.overlap(my.sprite.player, layer);
         }
-
-        /* **** **** **** **** **** ****
-         * CAMERAS SETUP
-         **** **** **** **** **** **** */
-        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-        this.cameras.main.startFollow(my.sprite.player, true, 0.1, 0.1);
-        this.cameras.main.setDeadzone(20, 20);
-        this.cameras.main.setZoom(SCALE);
-        this.cameras.main.setBackgroundColor("#7ff0a5");
-
-        for(let k in my.text){
-            this.cameras.main.ignore(my.text[k]);
-        }
-/*
-        this.cameraUI = this.cameras.add();
-        for(let k in my.sprite){
-            this.cameraUI.ignore(my.sprite[k]);
-        }
-
-        for(let k in my.vfx){
-            this.cameraUI.ignore(my.vfx[k]);
-        }
-
-        for(let layer of this.tileLayers){
-            this.cameraUI.ignore(layer);
-        }
-        /* END CAMERAS SETUP */
-
         
         /* **** **** **** **** **** ****
          * CREATE VFX
@@ -241,6 +213,35 @@ class Bitryside extends Phaser.Scene {
             this.sound.add("stepMedium_0", {volume: 0.8})
         ];
         /* END CREATE SFX */
+
+        /* **** **** **** **** **** ****
+         * CAMERAS SETUP
+         **** **** **** **** **** **** */
+        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        this.cameras.main.startFollow(my.sprite.player, true, 0.1, 0.1);
+        this.cameras.main.setDeadzone(20, 20);
+        this.cameras.main.setZoom(SCALE);
+        this.cameras.main.setBackgroundColor("#7ff0a5");
+
+        for(let k in my.text){
+            this.cameras.main.ignore(my.text[k]);
+        }
+
+        this.cameraUI = this.cameras.add();
+        this.cameraUI.ignore([this.background, this.keys]);
+        
+        for(let k in my.sprite){
+            this.cameraUI.ignore(my.sprite[k]);
+        }
+
+        for(let k in my.vfx){
+            this.cameraUI.ignore(my.vfx[k]);
+        }
+
+        for(let layer of this.tileLayers){
+            this.cameraUI.ignore(layer);
+        }
+        /* END CAMERAS SETUP */
 
         // ANIMATED TILES PLUGIN
         this.animatedTiles.init(this.map);
