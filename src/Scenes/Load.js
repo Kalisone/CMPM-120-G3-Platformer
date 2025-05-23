@@ -10,7 +10,7 @@ class Load extends Phaser.Scene {
 
         /* **** **** **** **** **** ****
          * LOAD FROM TILED
-        **** **** **** **** **** **** */
+         **** **** **** **** **** **** */
         // Load characters spritesheet
         this.load.atlas("characters", "pixPlatform_tilemap-characters_packed.png", "pixPlatform_tilemap-characters_packed.json");
 
@@ -32,21 +32,32 @@ class Load extends Phaser.Scene {
 
         // Load background tilemap
         this.load.image("tilemap_background", "pixPlatform_tilemap-backgrounds.png");
-        this.load.tilemapTiledJSON("level-2-background", "gearbit-level-2-background.tmj");
-
-        // Load the tilemap as a spritesheet
-        this.load.spritesheet("background_tilemap_sheet", "pixPlatform_tilemap-backgrounds_packed.png", {
-            frameWidth: 24,
-            frameHeight: 24
-        });
-
+        
         /* END LOAD FROM TILED */
 
+        /* **** **** **** **** **** ****
+         * LOAD VFX
+         **** **** **** **** **** **** */
         this.load.multiatlas("kenny-particles", "kenny-particles.json");
+        /* END LOAD VFX */
 
         /* **** **** **** **** **** ****
          * LOAD SFX
-        **** **** **** **** **** **** */
+         **** **** **** **** **** **** */
+        this.load.setPath("./audio/")
+        // Jump sound
+        this.load.audio("jump", "phaseJump3.ogg");
+        this.load.audio("up", "phaserUp4.ogg");
+
+        // Key sound
+        this.load.audio("keyUp", "powerUp8.ogg");
+        this.load.audio("keyTone", "zapThreeToneUp.ogg");
+
+        // Footstep sound
+
+        // Hard footstep sound
+
+        /* ENDO LOAD SFX */
     }
 
     create() {
@@ -82,10 +93,12 @@ class Load extends Phaser.Scene {
                 { frame: "tile_0001.png" }
             ],
         });
+        /* END CREATE VFX */
 
         /* **** **** **** **** **** ****
          * CREATE SFX
          **** **** **** **** **** **** */
+        /* END CREATE SFX */
 
         this.scene.start("bitryside");
     }

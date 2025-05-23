@@ -17,6 +17,10 @@ class Bitryside extends Phaser.Scene {
         this.keys = 0;
     }
 
+    preload(){
+        
+    }
+
     create(){
         this.map = this.add.tilemap("level-2", 18, 18, 150, 30);
         this.tileset = this.map.addTilesetImage("pixPlatform_tiles", "base_tilemap_tiles");
