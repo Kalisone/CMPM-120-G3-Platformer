@@ -69,6 +69,7 @@ class Load extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * CREATE VFX
          **** **** **** **** **** **** */
+        /* Anims, unassigned */
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNames("characters", {
@@ -99,6 +100,7 @@ class Load extends Phaser.Scene {
             ],
         });
 
+        /* Anims, by variable in my.vfx */
         my.vfx.keyAnim = this.anims.create({
             key: "keyAnim",
             frames: [
@@ -139,6 +141,26 @@ class Load extends Phaser.Scene {
             ],
             duration: 150
         });
+
+        /* Particles */
+        my.vfx.particleKey = this.add.particles(0, 0, "kenny-particles", {
+            anim: "keyAnim",
+            scale: {start: 0.03, end: 0.2},
+            frequency: my.vfx.keyAnim.msPerFrame,
+            lifespan: my.vfx.keyAnim.duration,
+            alpha: {start: 0.2, end: 0.1},
+            blendMode: "ADD"
+        }).stop();
+
+        my.vfx.walking = this.add.particles(0, 0, "kenny-particles", {
+            frame: ["smoke_03.png", "smoke_09.png"],
+            random: true,
+            scale: {start: 0.02, end: 0.04},
+            maxAliveParticles: 8,
+            lifespan: 150,
+            gravityY: -400,
+            alpha: {start: 0, end: 0.1}
+        }).stop();
         /* END CREATE VFX */
 
         /* **** **** **** **** **** ****

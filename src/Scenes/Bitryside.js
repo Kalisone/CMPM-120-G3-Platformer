@@ -9,7 +9,7 @@ class Bitryside extends Phaser.Scene {
         this.DRAG = 2400;
         this.physics.world.gravity.y = 1500;
         this.JUMP_VELOCITY = -600;
-        this.MAX_SPEED = 200;
+        this.MAX_SPEED = 240;
         this.PARTICLE_VELOCITY = 50;
         this.SCALE = SCALE;
 
@@ -38,11 +38,11 @@ class Bitryside extends Phaser.Scene {
         // Tile Layers
         this.layerGround_1 = this.map.createLayer("Ground-Platforms-1", [this.tilesetBase, this.tilesetInd], 0, 0);
         this.layerEnvrFore_2 = this.map.createLayer("Environs-Foreground-2", [this.tilesetBase, this.tilesetInd], 0, 0);
-        this.layerTreeCloud_3 = this.map.createLayer("Trees-Clouds-3", [this.tilesetBase, this.tilesetInd], 0, 0);
+        this.layerTree_3 = this.map.createLayer("Trees-Clouds-3", [this.tilesetBase, this.tilesetInd], 0, 0);
         this.layerEnvrBack_4 = this.map.createLayer("Environs-Background-4", [this.tilesetBase, this.tilesetInd], 0, 0);
 
         this.tileLayers = [];
-        this.tileLayers.push(this.layerGround_1, this.layerEnvrFore_2, this.layerTreeCloud_3, this.layerEnvrBack_4);
+        this.tileLayers.push(this.layerGround_1, this.layerEnvrFore_2, this.layerTree_3, this.layerEnvrBack_4);
 
         for(let layer of this.tileLayers){
             layer.setCollisionByProperty({
@@ -77,6 +77,27 @@ class Bitryside extends Phaser.Scene {
             strokeThickness: 2
         }).setScrollFactor(0);
         /* END CREATE TEXT */
+
+        /* **** **** **** **** **** ****
+         * PLAYER SETUP
+         **** **** **** **** **** **** */
+        this.spawnPt = this.map.findObject("Objects-5", obj => obj.name === "spawn");
+        my.sprite.player = this.physics.add.sprite(this.spawnPt.x, this.spawnPt.y, "platformer_characters", "tile_0000.png");
+        my.sprite.player.setCollideWorldBounds(true);
+        my.sprite.player.body.maxVelocity.x = this.MAX_SPEED;
+
+        // Collision handling
+        this.physics.add.collider(my.sprite.player, this.layerGround_1);
+
+        this.physics.add.overlap(my.sprite.player, this.coinGroup, (obj1, obj2) => {
+            this.collectObj(obj1, obj2);
+        })
+
+        // Controls
+        cursors = this.input.keyboard.createCursorKeys();
+        /* END PLAYER SETUP */
+
+        
     }
 
     update(){
