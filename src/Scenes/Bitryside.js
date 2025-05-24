@@ -29,6 +29,12 @@ class Bitryside extends Phaser.Scene {
     }
 
     create(){
+        // //// //// //// //// //// ////
+        //
+        // LOGIC
+        //
+        // //// //// //// //// //// ////
+
         // BACKGROUND
         this.backgroundImg = this.add.image(0, 0, "green_background");
         this.background = this.add.tileSprite(0, 600, 1440, 396, "green_background").setScale(6).setScrollFactor(0.4);
@@ -122,7 +128,6 @@ class Bitryside extends Phaser.Scene {
 
         this.physics.add.collider(my.sprite.player, this.layerGround_1, hazCollider, hazHandler);
 
-
         this.physics.add.collider(my.sprite.player, this.layerGround_1, );
 
         this.physics.add.overlap(my.sprite.player, this.keyGroup, (obj1, obj2) => {
@@ -130,6 +135,19 @@ class Bitryside extends Phaser.Scene {
         });
 
         /* END COLLISION */
+
+        /* **** **** **** **** **** ****
+         * CREATE LEVEL EXIT
+         **** **** **** **** **** **** */
+        this.exitPt = this.map.findObject("Objects-5", obj => obj.name === "exit");
+
+        /* END LEVEL EXIT */
+
+        // //// //// //// //// //// ////
+        //
+        // FX
+        //
+        // //// //// //// //// //// ////
 
         /* **** **** **** **** **** ****
          * CREATE TEXT
@@ -405,7 +423,8 @@ class Bitryside extends Phaser.Scene {
         }
 
         // LEVEL END CONDITION
-        if(this.numKeys <= 0){
+        if(this.numKeys <= 0 && !this.exitPt.properties.doorUnlocked){
+            this.exitPt.properties.doorUnlocked = true;
             console.log("next level opened");
         }
 
