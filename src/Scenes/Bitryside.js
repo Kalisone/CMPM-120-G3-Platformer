@@ -103,7 +103,6 @@ class Bitryside extends Phaser.Scene {
          **** **** **** **** **** **** */
         let hazCollider = (obj1, obj2) => {
             if(obj2.properties.hazard){
-                console.log("propCollider")
                     if(obj1.lives > 0){
                         this.respawn(obj1);
                     }else{
@@ -116,7 +115,6 @@ class Bitryside extends Phaser.Scene {
 
         let hazHandler = (obj1, obj2) => {
             if(obj2.properties.hazard){
-                console.log("hazHandler");
                 return true;
             }else{
                 return false;
@@ -134,17 +132,6 @@ class Bitryside extends Phaser.Scene {
 
         /* END COLLISION */
 
-        /* **** **** **** **** **** ****
-         * HAZARDS
-         **** **** **** **** **** **** */
-        
-        /*
-        for(let layer of this.tileLayers){
-            layer.setTileIndexCallback([13, 29, 45], this.hazard, this, layer);
-            this.physics.add.overlap(my.sprite.player, layer);
-        }
-        */
-        
         /* **** **** **** **** **** ****
          * CREATE TEXT
          **** **** **** **** **** **** */
@@ -445,15 +432,6 @@ class Bitryside extends Phaser.Scene {
             sound.play();
         }
         
-        return;
-    }
-
-    hazard(sprite, tile){
-        console.log("callback")
-        if(sprite.lives > 0){
-            respawn(sprite);
-        }
-
         return;
     }
 
