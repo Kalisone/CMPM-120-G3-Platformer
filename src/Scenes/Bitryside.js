@@ -90,6 +90,7 @@ class Bitryside extends Phaser.Scene {
         my.sprite.player = this.physics.add.sprite(this.spawnPt.x, this.spawnPt.y, "platformer_characters", "tile_0002.png");
 
         my.sprite.player.setCollideWorldBounds(true, 1);
+        my.sprite.player.setScale(0.7);
         my.sprite.player.body.maxVelocity.x = this.MAX_SPEED;
 
         my.sprite.player.lives = this.DEFAULT_LIVES;
@@ -103,13 +104,11 @@ class Bitryside extends Phaser.Scene {
          **** **** **** **** **** **** */
         let hazCollider = (obj1, obj2) => {
             if(obj2.properties.hazard){
-                    if(obj1.lives > 0){
-                        this.respawn(obj1);
-                    }else{
-                    console.log("game over");
+                if(obj1.lives > 0){
+                    this.respawn(obj1);
                 }
 
-                    return;
+                return;
             }
         }
 
@@ -409,6 +408,11 @@ class Bitryside extends Phaser.Scene {
         if(this.numKeys <= 0){
             console.log("next level opened");
         }
+
+        // GAME FAIL CONDITION
+        if(my.sprite.player.lives <= 0){
+            console.log("game end");
+        }
     }
 
     fxPlayerWalk(){
@@ -437,6 +441,11 @@ class Bitryside extends Phaser.Scene {
 
     respawn(player){
         player.lives--;
+        
+        if(player === my.sprite.player){
+            my.text.lives.setText("Lives Remaining: " + my.sprite.player.lives);
+        }
+
         player.x = this.spawnPt.x;
         player.y = this.spawnPt.y;
         
