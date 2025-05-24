@@ -38,7 +38,7 @@ let config = {
 }
 
 var cursors;
-const SCALE = 2.0;
+const SCALE = 3.0;
 var my = {sprite: {}, text: {}, vfx: {}, sfx: {}};
 
 const game = new Phaser.Game(config);

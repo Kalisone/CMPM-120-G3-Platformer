@@ -240,7 +240,7 @@
                  "type":"",
                  "visible":true,
                  "width":18,
-                 "x":1025.83333333333,
+                 "x":1025.83,
                  "y":126
                 }, 
                 {
@@ -728,6 +728,15 @@
                         }]
                 }, 
                 {
+                 "id":68,
+                 "properties":[
+                        {
+                         "name":"hazard",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
                  "id":73,
                  "properties":[
                         {
@@ -1201,6 +1210,11 @@
                          "name":"hazard",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"water",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -1219,6 +1233,11 @@
                          "name":"hazard",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"water",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -1235,6 +1254,11 @@
                  "properties":[
                         {
                          "name":"hazard",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"water",
                          "type":"bool",
                          "value":true
                         }]
@@ -1318,6 +1342,11 @@
                          "name":"hazard",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"water",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -1336,6 +1365,11 @@
                          "name":"hazard",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"water",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -1352,6 +1386,11 @@
                  "properties":[
                         {
                          "name":"hazard",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"water",
                          "type":"bool",
                          "value":true
                         }]
@@ -1408,6 +1447,11 @@
                          "name":"hazard",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"water",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -1426,6 +1470,11 @@
                          "name":"hazard",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"water",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -1442,6 +1491,11 @@
                  "properties":[
                         {
                          "name":"hazard",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"water",
                          "type":"bool",
                          "value":true
                         }]
@@ -1678,6 +1732,11 @@
                          "name":"hazard",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"water",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -1694,6 +1753,11 @@
                  "properties":[
                         {
                          "name":"hazard",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"water",
                          "type":"bool",
                          "value":true
                         }]

@@ -58,11 +58,11 @@ class Bitryside extends Phaser.Scene {
         this.layerGround_1.setCollisionByProperty({
             collides: true
         });
-
+/*
         this.layerEnvrBack_4.setCollisionByProperty({
             collides: true
         });
-
+*/
         // Object Layer
         this.keys = this.map.createFromObjects("Objects-5", {
             name: "key",
@@ -76,6 +76,11 @@ class Bitryside extends Phaser.Scene {
         for(let key of this.keys){
             this.numKeys++;
         }
+
+        // Water tiles
+        this.waterTiles = this.layerGround_1.filterTiles(tile => {
+            return tile.properties.water == true;
+        });
         /* END CREATE TILES */
         
         /* **** **** **** **** **** ****
@@ -89,7 +94,7 @@ class Bitryside extends Phaser.Scene {
             stroke: "#000000",
             strokeThickness: 2
         })
-        my.text.keys = this.add.text(20, 20, "Keys Remaining: " + this.numKeys, {
+        my.text.keys = this.add.text(40, 20, "Keys Remaining: " + this.numKeys, {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '36px',
@@ -121,10 +126,18 @@ class Bitryside extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * HAZARDS
          **** **** **** **** **** **** */
+        let hazHandler = (obj1, obj2) => {
+            console.log(obj2.properties.hazard);
+            return obj2.properties.hazard;
+        }
+        this.physics.add.collider(my.sprite.player, this.layerGround_1, propCollider, hazHandler);
+        
+        /*
         for(let layer of this.tileLayers){
             layer.setTileIndexCallback([13, 29, 45], this.hazard, this, layer);
             this.physics.add.overlap(my.sprite.player, layer);
         }
+        */
         
         /* **** **** **** **** **** ****
          * CREATE VFX
@@ -199,6 +212,38 @@ class Bitryside extends Phaser.Scene {
             lifespan: my.vfx.landingAnim.duration,
             gravityY: -200
         }).stop();
+
+        if(!this.anims.get("waterAnim")){
+            my.vfx.waterAnim = this.anims.create({
+                key: "waterAnim",
+                frames: [
+                    {key: "kenny-particles", frame: "smoke_04.png"},
+                    {key: "kenny-particles", frame: "circle_01.png"},
+                    {key: "kenny-particles", frame: "smoke_07.png"},
+                    {key: "kenny-particles", frame: "circle_04.png"},
+                    {key: "kenny-particles", frame: "smoke_08.png"}
+                ],
+                duration: 300,
+                frameRate: 10
+            });
+        }
+
+        this.waterTiles.animParticles = [];
+        for(let water of this.waterTiles){
+            this.waterTiles.animParticles.push(this.add.particles(water.pixelX + water.width/2, water.pixelY, "kenny-particles", {
+                anim: ["waterAnim"],
+                frequency: my.vfx.waterAnim.msPerFrame,
+                lifespan: my.vfx.waterAnim.duration,
+                scale: () => 0.04 * (1 + (Math.random() ** 2)),
+                alpha: {start: 0.1, end: 0.02, ease: "sine.out"},
+                speed: {min: 0, max: 100},
+                gravityY: -200,
+                radial: true,
+                advance: 10,
+                blendMode: "ADD"
+            }));
+        }
+
         /* END CREATE VFX */
 
         /* **** **** **** **** **** ****
@@ -243,7 +288,8 @@ class Bitryside extends Phaser.Scene {
         this.cameraUI.ignore([
             this.background,
             this.backgroundImg,
-            this.keys
+            this.keys,
+            this.waterTiles.animParticles
         ]);
         
         for(let k in my.sprite){
@@ -285,7 +331,6 @@ class Bitryside extends Phaser.Scene {
             if (my.sprite.player.body.blocked.down) {
                 this.fxPlayerWalk();
             }
-
         }
 
         // [->] RIGHT
