@@ -18,10 +18,10 @@ class Bitryside extends Phaser.Scene {
         this.MAP_HEIGHT = 540;
         this.physics.world.setBounds(0, 0, this.MAP_WIDTH, this.MAP_HEIGHT);
 
+        this.DEFAULT_LIVES = 3;
         this.wasInAir = this.inAir = false;
         this.numKeys = 0;
         this.stepCounter = 0;
-        my.sprite.lives = 3;
     }
 
     preload(){
@@ -82,35 +82,17 @@ class Bitryside extends Phaser.Scene {
             return tile.properties.water == true;
         });
         /* END CREATE TILES */
-        
-        /* **** **** **** **** **** ****
-         * CREATE TEXT
-         **** **** **** **** **** **** */
-        my.text.lives = this.add.text(40, 20, "Lives Remaining: " + my.sprite.lives, {
-            fontFamily: "'Jersey 10'",
-            style: "'regular'",
-            fontSize: '36px',
-            color: "#ffffff",
-            stroke: "#000000",
-            strokeThickness: 2
-        })
-        my.text.keys = this.add.text(40, 60, "Keys Remaining: " + this.numKeys, {
-            fontFamily: "'Jersey 10'",
-            style: "'regular'",
-            fontSize: '36px',
-            color: "#ffffff",
-            stroke: "#000000",
-            strokeThickness: 2
-        });
-        /* END CREATE TEXT */
 
         /* **** **** **** **** **** ****
          * PLAYER SETUP
          **** **** **** **** **** **** */
         this.spawnPt = this.map.findObject("Objects-5", obj => obj.name === "spawn");
         my.sprite.player = this.physics.add.sprite(this.spawnPt.x, this.spawnPt.y, "platformer_characters", "tile_0002.png");
+
         my.sprite.player.setCollideWorldBounds(true, 1);
         my.sprite.player.body.maxVelocity.x = this.MAX_SPEED;
+
+        my.sprite.player.lives = this.DEFAULT_LIVES;
 
         // Controls
         cursors = this.input.keyboard.createCursorKeys();
@@ -119,11 +101,11 @@ class Bitryside extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * COLLISION
          **** **** **** **** **** **** */
-        let propCollider = (obj1, obj2) => {
+        let hazCollider = (obj1, obj2) => {
             if(obj2.properties.hazard){
-                console.log("callback")
-                    if(sprite.lives > 0){
-                        respawn(obj1);
+                console.log("propCollider")
+                    if(obj1.lives > 0){
+                        this.respawn(obj1);
                     }else{
                     console.log("game over");
                 }
@@ -133,16 +115,18 @@ class Bitryside extends Phaser.Scene {
         }
 
         let hazHandler = (obj1, obj2) => {
-            //console.log("!", obj2.properties.hazard);
-            //return obj2.properties.hazard;
-            if(obj2.properties.hazard == true){
-                return false;
-            }else{
+            if(obj2.properties.hazard){
+                console.log("hazHandler");
                 return true;
+            }else{
+                return false;
             }
         }
 
-        this.physics.add.collider(my.sprite.player, this.layerGround_1, propCollider, hazHandler);
+        this.physics.add.collider(my.sprite.player, this.layerGround_1, hazCollider, hazHandler);
+
+
+        this.physics.add.collider(my.sprite.player, this.layerGround_1, );
 
         this.physics.add.overlap(my.sprite.player, this.keyGroup, (obj1, obj2) => {
             this.collectObj(obj1, obj2);
@@ -160,6 +144,27 @@ class Bitryside extends Phaser.Scene {
             this.physics.add.overlap(my.sprite.player, layer);
         }
         */
+        
+        /* **** **** **** **** **** ****
+         * CREATE TEXT
+         **** **** **** **** **** **** */
+        my.text.lives = this.add.text(40, 20, "Lives Remaining: " + my.sprite.player.lives, {
+            fontFamily: "'Jersey 10'",
+            style: "'regular'",
+            fontSize: '36px',
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 2
+        })
+        my.text.keys = this.add.text(40, 60, "Keys Remaining: " + this.numKeys, {
+            fontFamily: "'Jersey 10'",
+            style: "'regular'",
+            fontSize: '36px',
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 2
+        });
+        /* END CREATE TEXT */
         
         /* **** **** **** **** **** ****
          * CREATE VFX
@@ -416,11 +421,6 @@ class Bitryside extends Phaser.Scene {
         // LEVEL END CONDITION
         if(this.numKeys <= 0){
             console.log("next level opened");
-        }
-
-        // DEATH CONDITION
-        if(this.lives <= 0){
-            console.log("dead");
         }
     }
 
