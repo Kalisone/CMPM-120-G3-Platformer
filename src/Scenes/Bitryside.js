@@ -86,7 +86,7 @@ class Bitryside extends Phaser.Scene {
         /* **** **** **** **** **** ****
          * CREATE TEXT
          **** **** **** **** **** **** */
-        my.text.lives = this.add.text(game.config.width - 270, 20, "Lives Remaining: " + my.sprite.lives, {
+        my.text.lives = this.add.text(40, 20, "Lives Remaining: " + my.sprite.lives, {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '36px',
@@ -94,7 +94,7 @@ class Bitryside extends Phaser.Scene {
             stroke: "#000000",
             strokeThickness: 2
         })
-        my.text.keys = this.add.text(40, 20, "Keys Remaining: " + this.numKeys, {
+        my.text.keys = this.add.text(40, 60, "Keys Remaining: " + this.numKeys, {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '36px',
@@ -112,25 +112,47 @@ class Bitryside extends Phaser.Scene {
         my.sprite.player.setCollideWorldBounds(true, 1);
         my.sprite.player.body.maxVelocity.x = this.MAX_SPEED;
 
-        // Collision handling
-        this.physics.add.collider(my.sprite.player, this.layerGround_1);
-
-        this.physics.add.overlap(my.sprite.player, this.keyGroup, (obj1, obj2) => {
-            this.collectObj(obj1, obj2);
-        })
-
         // Controls
         cursors = this.input.keyboard.createCursorKeys();
         /* END PLAYER SETUP */
 
         /* **** **** **** **** **** ****
+         * COLLISION
+         **** **** **** **** **** **** */
+        let propCollider = (obj1, obj2) => {
+            if(obj2.properties.hazard){
+                console.log("callback")
+                    if(sprite.lives > 0){
+                        respawn(obj1);
+                    }else{
+                    console.log("game over");
+                }
+
+                    return;
+            }
+        }
+
+        let hazHandler = (obj1, obj2) => {
+            //console.log("!", obj2.properties.hazard);
+            //return obj2.properties.hazard;
+            if(obj2.properties.hazard == true){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        this.physics.add.collider(my.sprite.player, this.layerGround_1, propCollider, hazHandler);
+
+        this.physics.add.overlap(my.sprite.player, this.keyGroup, (obj1, obj2) => {
+            this.collectObj(obj1, obj2);
+        });
+
+        /* END COLLISION */
+
+        /* **** **** **** **** **** ****
          * HAZARDS
          **** **** **** **** **** **** */
-        let hazHandler = (obj1, obj2) => {
-            console.log(obj2.properties.hazard);
-            return obj2.properties.hazard;
-        }
-        this.physics.add.collider(my.sprite.player, this.layerGround_1, propCollider, hazHandler);
         
         /*
         for(let layer of this.tileLayers){
@@ -435,10 +457,10 @@ class Bitryside extends Phaser.Scene {
         return;
     }
 
-    respawn(sprite){
-        sprite.lives--;
-        sprite.x = this.spawnPt.x;
-        sprite.y = this.spawnPt.y;
+    respawn(player){
+        player.lives--;
+        player.x = this.spawnPt.x;
+        player.y = this.spawnPt.y;
         
         this.cameras.main.shake(270, 0.02)
     }
