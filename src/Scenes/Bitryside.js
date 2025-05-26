@@ -304,8 +304,24 @@ class Bitryside extends Phaser.Scene {
          **** **** **** **** **** **** */
         this.physics.world.drawDebug = false;
 
-        this.input.keyboard.on('keydown-ZERO', () => {
+        // Decrement Life
+        this.input.keyboard.on('keydown-MINUS', () => {
             this.respawn(my.sprite.player, true);
+        });
+
+        // Increment Life
+        this.input.keyboard.on('keydown-PLUS', () => {
+            my.text.lives.setText("Lives Remaining: " + ++my.sprite.player.lives);
+        });
+
+        // Decrement Keys Remaining
+        this.input.keyboard.on('keydown-NINE', () => {
+            my.text.keys.setText("Keys Remaining: " + --this.numKeys);
+        });
+
+        // Increment Keys Remaining
+        this.input.keyboard.on('keydown-ZERO', () => {
+            my.text.keys.setText("Keys Remaining: " + ++this.numKeys);
         });
         /* END DEBUG */
     }
@@ -431,15 +447,17 @@ class Bitryside extends Phaser.Scene {
         return;
     }
 
-    collectObj(obj1, obj2){
-        my.vfx.particleKey.emitParticleAt(obj2.x, obj2.y);
-        obj2.destroy();
+    collectObj(obj1, obj2, debug){
+        if(!debug){
+            my.vfx.particleKey.emitParticleAt(obj2.x, obj2.y);
+            obj2.destroy();
+
+            for(let sound of my.sfx.key){
+                sound.play();
+            }
+        }
 
         my.text.keys.setText("Keys Remaining: " + --this.numKeys);
-
-        for(let sound of my.sfx.key){
-            sound.play();
-        }
         
         return;
     }
