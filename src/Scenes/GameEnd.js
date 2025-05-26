@@ -22,9 +22,7 @@ class GameEnd extends Phaser.Scene{
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '24px',
-            color: "#ffffff",
-            stroke: "#000000",
-            strokeThickness: 2
+            color: "#ffffff"
         }).setVisible(false);
 
         my.text.endMsg.setPosition(game.config.width/2 - my.text.endMsg.displayWidth/2, game.config.height/2 - my.text.endMsg.displayHeight/2);
