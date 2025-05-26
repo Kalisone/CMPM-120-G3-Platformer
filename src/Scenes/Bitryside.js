@@ -448,6 +448,10 @@ class Bitryside extends Phaser.Scene {
         if(!debug){
             player.x = this.spawnPt.x;
             player.y = this.spawnPt.y;
+
+            for(let sound of my.sfx.death){
+                sound.play();
+            }
         }
         
         this.cameras.main.shake(270, 0.02);

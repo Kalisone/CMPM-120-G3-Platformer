@@ -62,11 +62,12 @@ class Load extends Phaser.Scene {
         this.load.audio("stepHard_0", "footstep_concrete_001.ogg");
         this.load.audio("stepSoft_0", "footstep_carpet_003.ogg");
 
-        // Death sound
+        // Door unlock sound
         this.load.audio("clong", "impactMining_004.ogg");
+
+        // Death sound
         this.load.audio("reverbLaser", "laser3.ogg");
         this.load.audio("blare", "zap2.ogg");
-        this.load.audio("discordantTones", "threeTone1.ogg");
 
         /* END LOAD SFX */
     }
@@ -171,6 +172,11 @@ class Load extends Phaser.Scene {
             this.sound.add("stepHard_0", {volume: 0.6}),
             this.sound.add("stepMedium_0", {volume: 0.8})
         ];
+
+        my.sfx.death = [
+            this.sound.add("reverbLaser"),
+            this.sound.add("blare", {volume: 0.6})
+        ]
         /* CREATE SFX */
 
         this.scene.start("bitryside");
