@@ -16,9 +16,12 @@ class GameEnd extends Phaser.Scene{
         });
 
         my.text.endText.setPosition(game.config.width/2 - my.text.endText.displayWidth/2, game.config.height/2 - my.text.endText.displayHeight/2);
+
+        this.input.keyboard.on('keydown', () => {
+            this.scene.start("bitryside");
+        });
     }
 
     update(){
-        
     }
 }
