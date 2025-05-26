@@ -149,6 +149,30 @@ class Load extends Phaser.Scene {
         });
         /* END CREATE VFX */
 
+        /* **** **** **** **** **** ****
+         * CREATE VFX
+         **** **** **** **** **** **** */
+        my.sfx.jump = [
+            this.sound.add("jump", {volume: 0.6}),
+            this.sound.add("up", {volume: 0.6})
+        ];
+
+        my.sfx.key = [
+            this.sound.add("keyUp", {volume: 0.4}),
+            this.sound.add("keyTone", {volume: 0.4})
+        ];
+
+        my.sfx.steps = [
+            this.sound.add("stepHeavy_0", {volume: 0.8}),
+            this.sound.add("stepMedium_0", {volume: 0.8})
+        ];
+
+        my.sfx.landing = [
+            this.sound.add("stepHard_0", {volume: 0.6}),
+            this.sound.add("stepMedium_0", {volume: 0.8})
+        ];
+        /* CREATE SFX */
+
         this.scene.start("bitryside");
     }
 

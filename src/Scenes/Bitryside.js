@@ -238,31 +238,6 @@ class Bitryside extends Phaser.Scene {
         /* END CREATE VFX */
 
         /* **** **** **** **** **** ****
-         * CREATE SFX
-         **** **** **** **** **** **** */
-        this.load.setPath("../assets/audio/");
-        my.sfx.jump = [
-            this.sound.add("jump", {volume: 0.6}),
-            this.sound.add("up", {volume: 0.6})
-        ];
-
-        my.sfx.key = [
-            this.sound.add("keyUp", {volume: 0.4}),
-            this.sound.add("keyTone", {volume: 0.4})
-        ];
-
-        my.sfx.steps = [
-            this.sound.add("stepHeavy_0", {volume: 0.8}),
-            this.sound.add("stepMedium_0", {volume: 0.8})
-        ];
-
-        my.sfx.landing = [
-            this.sound.add("stepHard_0", {volume: 0.6}),
-            this.sound.add("stepMedium_0", {volume: 0.8})
-        ];
-        /* END CREATE SFX */
-
-        /* **** **** **** **** **** ****
          * CAMERAS SETUP
          **** **** **** **** **** **** */
         this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
