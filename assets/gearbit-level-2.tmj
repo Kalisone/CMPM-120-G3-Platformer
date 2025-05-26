@@ -284,12 +284,6 @@
                  "id":16,
                  "name":"exit",
                  "point":true,
-                 "properties":[
-                        {
-                         "name":"doorUnlocked",
-                         "type":"bool",
-                         "value":false
-                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,

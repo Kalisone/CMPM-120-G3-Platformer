@@ -979,9 +979,6 @@
   <object id="11" name="key" gid="28" x="1602" y="145" width="18" height="18"/>
   <object id="15" name="key" gid="28" x="2592" y="431.75" width="18" height="18"/>
   <object id="16" name="exit" x="1593" y="370">
-   <properties>
-    <property name="doorUnlocked" type="bool" value="false"/>
-   </properties>
    <point/>
   </object>
  </objectgroup>

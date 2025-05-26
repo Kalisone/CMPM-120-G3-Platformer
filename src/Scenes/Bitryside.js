@@ -411,12 +411,13 @@ class Bitryside extends Phaser.Scene {
          **** **** **** **** **** **** */
 
         // LEVEL END CONDITION
-        if(this.numKeys <= 0 && !this.exitPt.properties.doorUnlocked){
-            this.exitPt.properties.doorUnlocked = true;
-            my.text.keys.setText("Door Unlocked!");
+        if(this.numKeys <= 0){
+            if(this.numKeys === 0 && !my.text.keys.setText("Door Unlocked!")){
+                my.text.keys.setText("Door Unlocked!");
+            }
         }
 
-        if(this.exitPt.properties.doorUnlocked){
+        if(this.numKeys === 0){
             let a = my.sprite.player, b = this.exitPt;
 
             let beforePt = b.x < a.x + (a.displayWidth/2);
