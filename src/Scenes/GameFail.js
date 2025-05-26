@@ -2,8 +2,8 @@ class GameFail extends Phaser.Scene{
     constructor(){
         super("gameFail");
 
-        this.DEFAULT_TEXT_COUNTER = 90;
-        this.textCounter = 225;
+        this.DEFAULT_TEXT_COUNTER = 75;
+        this.textCounter = 120;
     }
 
     create(){
