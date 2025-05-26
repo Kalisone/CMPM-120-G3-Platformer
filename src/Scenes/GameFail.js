@@ -2,7 +2,8 @@ class GameFail extends Phaser.Scene{
     constructor(){
         super("gameFail");
 
-        this.DEFAULT_TEXT_COUNTER = this.textCounter = 360;
+        this.DEFAULT_TEXT_COUNTER = 90;
+        this.textCounter = 225;
     }
 
     create(){
@@ -17,14 +18,14 @@ class GameFail extends Phaser.Scene{
             strokeThickness: 2
         });
 
-        my.text.replay = this.add.text(0, 0, "[ Press any key to play again. ]", {
+        my.text.replay = this.add.text(0, 0, "[ Press any key to play again ]", {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '24px',
             color: "#ffffff",
             stroke: "#000000",
             strokeThickness: 2
-        });
+        }).setVisible(false);
 
         my.text.endMsg.setPosition(game.config.width/2 - my.text.endMsg.displayWidth/2, game.config.height/2 - my.text.endMsg.displayHeight/2);
 
@@ -39,6 +40,7 @@ class GameFail extends Phaser.Scene{
 
     update(){
         if(--this.textCounter <= 0){
+            this.textCounter = this.DEFAULT_TEXT_COUNTER;
             my.text.replay.setVisible(!my.text.replay.visible);
         }
     }

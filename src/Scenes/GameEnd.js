@@ -1,12 +1,15 @@
 class GameEnd extends Phaser.Scene{
     constructor(){
         super("gameEnd");
+
+        this.DEFAULT_TEXT_COUNTER = 90;
+        this.textCounter = 225;
     }
 
     create(){
         this.cameras.main.setBackgroundColor("#4169E1");
 
-        my.text.endText = this.add.text(0, 0, "YOU WIN !", {
+        my.text.endMsg = this.add.text(0, 0, "YOU WIN !", {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '72px',
@@ -15,7 +18,18 @@ class GameEnd extends Phaser.Scene{
             strokeThickness: 2
         });
 
-        my.text.endText.setPosition(game.config.width/2 - my.text.endText.displayWidth/2, game.config.height/2 - my.text.endText.displayHeight/2);
+        my.text.replay = this.add.text(0, 0, "[ Press any key to play again ]", {
+            fontFamily: "'Jersey 10'",
+            style: "'regular'",
+            fontSize: '24px',
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 2
+        }).setVisible(false);
+
+        my.text.endMsg.setPosition(game.config.width/2 - my.text.endMsg.displayWidth/2, game.config.height/2 - my.text.endMsg.displayHeight/2);
+
+        my.text.replay.setPosition(game.config.width/2 - my.text.replay.displayWidth/2, game.config.height*4/5 - my.text.replay.displayHeight/2);
 
         this.input.keyboard.on('keydown', () => {
             this.scene.start("bitryside");
@@ -23,5 +37,9 @@ class GameEnd extends Phaser.Scene{
     }
 
     update(){
+        if(--this.textCounter <= 0){
+            this.textCounter = this.DEFAULT_TEXT_COUNTER;
+            my.text.replay.setVisible(!my.text.replay.visible);
+        }
     }
 }
