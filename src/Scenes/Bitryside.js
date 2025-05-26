@@ -443,7 +443,7 @@ class Bitryside extends Phaser.Scene {
 
         // GAME FAIL CONDITION
         if(my.sprite.player.lives <= 0){
-            console.log("game end");
+            this.scene.start("gameFail");
         }
     }
 
