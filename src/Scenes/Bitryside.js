@@ -299,11 +299,13 @@ class Bitryside extends Phaser.Scene {
             my.text.keys.setText("Keys Remaining: " + ++this.numKeys);
         });
 
+        /*
         this.input.keyboard.on('keydown-SPACE', () => {
             for(let sound of my.sfx.unlock){
                 sound.play();
             }
         });
+        */
         /* END DEBUG */
     }
 
