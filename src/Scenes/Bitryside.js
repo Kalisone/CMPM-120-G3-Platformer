@@ -159,7 +159,8 @@ class Bitryside extends Phaser.Scene {
             color: "#ffffff",
             stroke: "#000000",
             strokeThickness: 2
-        })
+        });
+
         my.text.keys = this.add.text(40, 60, "Keys Remaining: " + this.numKeys, {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
@@ -437,7 +438,7 @@ class Bitryside extends Phaser.Scene {
             let belowPt = b.y > a.y - (a.displayHeight/2);
 
             if (beforePt && afterPt && abovePt && belowPt){
-                console.log("next level");
+                this.scene.start("gameEnd");
             }
         }
 
@@ -481,6 +482,6 @@ class Bitryside extends Phaser.Scene {
         player.x = this.spawnPt.x;
         player.y = this.spawnPt.y;
         
-        this.cameras.main.shake(270, 0.02)
+        this.cameras.main.shake(270, 0.02);
     }
 }
