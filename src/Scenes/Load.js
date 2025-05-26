@@ -64,6 +64,7 @@ class Load extends Phaser.Scene {
 
         // Door unlock sound
         this.load.audio("clong", "impactMining_004.ogg");
+        this.load.audio("bell", "impactBell_heavy_001.ogg");
 
         // Death sound
         this.load.audio("reverbLaser", "laser3.ogg");
@@ -172,6 +173,11 @@ class Load extends Phaser.Scene {
             this.sound.add("stepHard_0", {volume: 0.6}),
             this.sound.add("stepMedium_0", {volume: 0.8})
         ];
+
+        my.sfx.unlock = [
+            this.sound.add("clong"),
+            this.sound.add("bell")
+        ]
 
         my.sfx.death = [
             this.sound.add("reverbLaser"),

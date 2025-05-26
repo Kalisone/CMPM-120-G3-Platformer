@@ -388,6 +388,9 @@ class Bitryside extends Phaser.Scene {
         // LEVEL END CONDITION
         if(this.numKeys <= 0){
             if(this.numKeys === 0 && !my.text.keys.setText("Door Unlocked!")){
+                for(let sound of my.sfx.unlock){
+                    sound.play();
+                }
                 my.text.keys.setText("Door Unlocked!");
             }
         }
@@ -423,10 +426,10 @@ class Bitryside extends Phaser.Scene {
         return;
     }
 
-    collectObj(obj1, obj2, debug){
+    collectObj(player, key, debug){
         if(!debug){
-            my.vfx.particleKey.emitParticleAt(obj2.x, obj2.y);
-            obj2.destroy();
+            my.vfx.particleKey.emitParticleAt(key.x, key.y);
+            key.destroy();
 
             for(let sound of my.sfx.key){
                 sound.play();
@@ -434,6 +437,12 @@ class Bitryside extends Phaser.Scene {
         }
 
         my.text.keys.setText("Keys Remaining: " + --this.numKeys);
+
+        if(this.numKeys === 0){
+            for(let sound of my.sfx.unlock){
+                sound.play();
+            }
+        }
         
         return;
     }
