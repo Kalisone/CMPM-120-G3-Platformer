@@ -177,7 +177,7 @@ class Load extends Phaser.Scene {
         ];
 
         my.sfx.unlock = [
-            this.sound.add("clong", {volume: 1.0}),
+            this.sound.add("clong", {volume: 1.4}),
             this.sound.add("bell", {volume: 1.0})
         ]
 
