@@ -299,8 +299,15 @@ class Bitryside extends Phaser.Scene {
         // ANIMATED TILES PLUGIN
         this.animatedTiles.init(this.map);
         
-        // DEBUG
+        /* **** **** **** **** **** ****
+         * DEBUG
+         **** **** **** **** **** **** */
         this.physics.world.drawDebug = false;
+
+        this.input.keyboard.on('keydown-ZERO', () => {
+            this.respawn(my.sprite.player, true);
+        });
+        /* END DEBUG */
     }
 
     update(){
@@ -381,6 +388,11 @@ class Bitryside extends Phaser.Scene {
                 sound.play();
             }
         }
+        /* END PLAYER MOVEMENT */
+
+        /* **** **** **** **** **** ****
+         * END CONDITIONS
+         **** **** **** **** **** **** */
 
         // LEVEL END CONDITION
         if(this.numKeys <= 0 && !this.exitPt.properties.doorUnlocked){
@@ -405,6 +417,7 @@ class Bitryside extends Phaser.Scene {
         if(my.sprite.player.lives <= 0){
             this.scene.start("gameFail");
         }
+        /* END of END CONDITIONS */
     }
 
     fxPlayerWalk(){
@@ -431,15 +444,17 @@ class Bitryside extends Phaser.Scene {
         return;
     }
 
-    respawn(player){
+    respawn(player, debug){
         player.lives--;
         
         if(player === my.sprite.player){
             my.text.lives.setText("Lives Remaining: " + my.sprite.player.lives);
         }
 
-        player.x = this.spawnPt.x;
-        player.y = this.spawnPt.y;
+        if(debug){
+            player.x = this.spawnPt.x;
+            player.y = this.spawnPt.y;
+        }
         
         this.cameras.main.shake(270, 0.02);
     }
