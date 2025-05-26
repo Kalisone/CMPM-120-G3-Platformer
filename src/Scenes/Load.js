@@ -62,6 +62,12 @@ class Load extends Phaser.Scene {
         this.load.audio("stepHard_0", "footstep_concrete_001.ogg");
         this.load.audio("stepSoft_0", "footstep_carpet_003.ogg");
 
+        // Death sound
+        this.load.audio("clong", "impactMining_004.ogg");
+        this.load.audio("reverbLaser", "laser3.ogg");
+        this.load.audio("blare", "zap2.ogg");
+        this.load.audio("discordantTones", "threeTone1.ogg");
+
         /* END LOAD SFX */
     }
 
