@@ -445,7 +445,7 @@ class Bitryside extends Phaser.Scene {
             my.text.lives.setText("Lives Remaining: " + my.sprite.player.lives);
         }
 
-        if(debug){
+        if(!debug){
             player.x = this.spawnPt.x;
             player.y = this.spawnPt.y;
         }
