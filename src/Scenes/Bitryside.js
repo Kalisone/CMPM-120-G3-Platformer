@@ -425,7 +425,20 @@ class Bitryside extends Phaser.Scene {
         // LEVEL END CONDITION
         if(this.numKeys <= 0 && !this.exitPt.properties.doorUnlocked){
             this.exitPt.properties.doorUnlocked = true;
-            console.log("next level opened");
+            my.text.keys.setText("Door Unlocked!");
+        }
+
+        if(this.exitPt.properties.doorUnlocked){
+            let a = my.sprite.player, b = this.exitPt;
+
+            let beforePt = b.x < a.x + (a.displayWidth/2);
+            let afterPt = b.x > a.x - (a.displayWidth/2);
+            let abovePt = b.y < a.y + (a.displayHeight/2);
+            let belowPt = b.y > a.y - (a.displayHeight/2);
+
+            if (beforePt && afterPt && abovePt && belowPt){
+                console.log("next level");
+            }
         }
 
         // GAME FAIL CONDITION
