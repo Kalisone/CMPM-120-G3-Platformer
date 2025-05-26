@@ -100,6 +100,47 @@ class Load extends Phaser.Scene {
                 { frame: "tile_0003.png" }
             ],
         });
+
+        my.vfx.keyAnim = this.anims.create({
+                key: "keyAnim",
+                frames: [
+                    {key: "kenny-particles", frame: "flare_01.png"},
+                    {key: "kenny-particles", frame: "light_01.png"},
+                    {key: "kenny-particles", frame: "light_02.png"},
+                    {key: "kenny-particles", frame: "light_03.png"}
+                ],
+                duration: 300,
+                frameRate: 10
+            });
+
+             my.vfx.bubblingAnim = this.anims.create({
+            key: "bubblingAnim",
+            frames: [
+                {key: "kenny-particles", frame: "smoke_04.png"},
+                {key: "kenny-particles", frame: "circle_01.png"},
+                {key: "kenny-particles", frame: "smoke_07.png"},
+                {key: "kenny-particles", frame: "circle_04.png"},
+                {key: "kenny-particles", frame: "smoke_08.png"}
+            ],
+            duration: 300,
+            frameRate: 10
+        });
+
+        my.vfx.landingAnim = this.anims.create({
+            key: "landingAnim",
+            frames: [
+                {key: "kenny-particles", frame: "smoke_01.png"},
+                {key: "kenny-particles", frame: "smoke_02.png"},
+                {key: "kenny-particles", frame: "smoke_03.png"},
+                {key: "kenny-particles", frame: "smoke_04.png"},
+                {key: "kenny-particles", frame: "smoke_05.png"},
+                {key: "kenny-particles", frame: "smoke_06.png"},
+                {key: "kenny-particles", frame: "smoke_07.png"},
+                {key: "kenny-particles", frame: "smoke_08.png"},
+                {key: "kenny-particles", frame: "smoke_09.png"}
+            ],
+            duration: 300
+        });
         /* END CREATE VFX */
 
         this.scene.start("bitryside");

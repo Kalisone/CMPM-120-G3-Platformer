@@ -1,12 +1,14 @@
 class GameFail extends Phaser.Scene{
     constructor(){
         super("gameFail");
+
+        this.DEFAULT_TEXT_COUNTER = this.textCounter = 360;
     }
 
     create(){
         this.cameras.main.setBackgroundColor("#241111");
 
-        my.text.endText = this.add.text(0, 0, "YOU LOSE    : )", {
+        my.text.endMsg = this.add.text(0, 0, "YOU LOSE    : )", {
             fontFamily: "'Jersey 10'",
             style: "'regular'",
             fontSize: '72px',
@@ -15,7 +17,18 @@ class GameFail extends Phaser.Scene{
             strokeThickness: 2
         });
 
-        my.text.endText.setPosition(game.config.width/2 - my.text.endText.displayWidth/2, game.config.height/2 - my.text.endText.displayHeight/2);
+        my.text.replay = this.add.text(0, 0, "[ Press any key to play again. ]", {
+            fontFamily: "'Jersey 10'",
+            style: "'regular'",
+            fontSize: '24px',
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 2
+        });
+
+        my.text.endMsg.setPosition(game.config.width/2 - my.text.endMsg.displayWidth/2, game.config.height/2 - my.text.endMsg.displayHeight/2);
+
+        my.text.replay.setPosition(game.config.width/2 - my.text.replay.displayWidth/2, game.config.height*4/5 - my.text.replay.displayHeight/2);
 
         this.cameras.main.shake(360, 0.1);
 
@@ -25,5 +38,8 @@ class GameFail extends Phaser.Scene{
     }
 
     update(){
+        if(--this.textCounter <= 0){
+            my.text.replay.setVisible(!my.text.replay.visible);
+        }
     }
 }
